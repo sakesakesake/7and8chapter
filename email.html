@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>SAKE</title>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="description" content="website about sake">
+            <link href="stylesheet.css" rel="stylesheet">
+            <script src="moderizr.custom.05819.js"></script>
+        </head>
+        <body>
+            <div class="wrapper">
+                 <header>
+                    <h1>What is SAKE?</h1>
+                 </header>
+                 <nav>
+                    <ul>
+                        <li><a href="index.html">HOME</a></li>
+                        <li><a href="history.html">HISTORY</a></li>
+                        <li><a href="howtodrink.html">DRINK</a></li>
+                        <li><a href="contact.html">PURCHASE</a></li>
+                        <li><a href="security.html">About Security</a></li>
+                        <li><a href="email.html">Contact</a></li>
+                    </ul>
+                    
+                 </nav>
+                 <main>
+                    <field>
+                        <legend>CONTACT</legend>
+                        <form>
+                            <label for="name">Full name:</label>
+                            <input type="text" id="name" name="name" required ><br>
+                            <label for="email">Email Address:</label>
+                            <input type="email" id="email" name="email" required><br>
+                            <label for="reason">Type of Contents</label>
+                            
+                            
+                            <select id="reason" name="reason">
+                                <option value="0">--------</option>
+                                <option value="1">About products</option>
+                                <option value="2">About purchase</option>
+                                <option value="3">About us</option>
+                                <option value="4">Others</option>
+                            </select><br>
+                            <h2>CHAPTER 8 INDIVIDUAL HERE</h2>
+                            <p>fruitsarray is array for selections<br>
+                            stringFruits is the string</p>
+                            <section id ="fruits">
+                            <label for="fruits">Apple: </label>
+                            <input type="checkbox" id ="apple" name="choice" value="apple">
+                            <label for="fruits">Banana: </label>
+                            <input type="checkbox" id ="banana" name="choice" value="banana">
+                            <label for="fruits">Peach: </label>
+                            <input type="checkbox" id ="peach" name="choice" value="peach">
+                            <label for="fruits">Lemon: </label>
+                            <input type="checkbox" id ="lemon" name="choice" value="lemon">
+                            <label for="fruits">Grapes: </label>
+                            <input type="checkbox" id ="grapes" name="choice" value="grapes">
+                            </section>
+                            <br>
+                            
+                            <textarea  id="contents" name="contents" rows="15" cols="50" required>
+                            </textarea><br>
+                            <input type="submit" id = "submit" value="Submit" onclick="fillValidate()">
+                        </form>
+                          <div id="errormsg"></div>
+                          <section  id="profile">
+                            <p id="lodgingsSection">
+                                <ul id="profileLodgings"></ul>
+                            </p>
+                          </section>
+                          
+                    </field>
+                 </main>
+            </div>
+            <footer>
+                Copyright&copy;2020 HonamiSasahara
+            </footer>
+            <script>
+                var choices ={};
+                var chosenFruits={};
+                function fillValidate(){
+                    var reason= document.getElementById("reason").value;
+                    if (reason === "0"){
+                        document.getElementById("submit").addEventListener("submit",function(evt){
+                            evt.preventDefault();
+                        })
+                        alert("Please choose the type of content")
+                    }
+                }
+                
+//CHAPTER 8--------------------------------------------------------------------------------------
+                var fruitsarray=[];
+                var stringFruits="";
+                function registerFruit(){
+                    var checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
+                        for (var i = 0; i < checkboxes.length; i++){
+                            fruitsarray.push(checkboxes[i].value);
+                        }
+                        var stringFruits = fruitsarray.toString();
+                }
+                
+                function createEventListener(){
+                    var fruit = document.getElementsByName("choice");
+                    if (fruit[0].addEventListener) {
+                        for (var i = 0; i < fruit.length; i++) {
+                            fruit[i].addEventListener("change", registerFruit, false);
+                        }
+                        
+                    } else if (fruit[0].attachEvent) {
+                        for (var i = 0; i < fruit.length; i++) {
+                            fruit[i].attachEvent("onchange", registerFruit);
+                        }
+                        
+                    }
+                      
+                    
+                }
+                
+                if (window.addEventListener) {
+                    window.addEventListener("load", createEventListener, false);
+                } else if (window.attachEvent) {
+                    window.attachEvent("onload", createEventListener);
+                }
+
+            </script>
+        </body>
+    </html>
